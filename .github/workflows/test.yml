@@ -1,0 +1,10 @@
+name: Continuous Integration
+on: [push]
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    container: rchain/buildenv
+    steps:
+      - run: |
+          env | sort
