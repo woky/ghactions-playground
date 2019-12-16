@@ -4,10 +4,9 @@ jobs:
   build:
     name: Build
     runs-on: ubuntu-latest
+    container: rchain/buildenv:latest
     steps:
       - run: env | sort
-      - container: alpine
-        run: |
-          mkdir -p /home/runner/work/_temp
-          mount --bind $RUNNER_TEMP /home/runner/work/_temp
-          ls /home/runner/work/_temp
+      - run: env | sort
+        env:
+          SBT_OPTS: "$SBT_OPTS sbt.ci"
