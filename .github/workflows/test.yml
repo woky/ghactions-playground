@@ -6,7 +6,7 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: alpine
-      options: --privileged
+      options: --privileged --network=host
     steps:
       - run: env | sort
       - run: |
