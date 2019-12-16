@@ -8,7 +8,8 @@ jobs:
       image: alpine
       options: --privileged
     steps:
+      - run: env | sort
       - run: |
-          env | sort
-      - run: |
-          ls /
+          mkdir -p /home/runner/work/_temp
+          mount --bind $RUNNER_TEMP /home/runner/work/_temp
+          ls /home/runner/work/_temp
