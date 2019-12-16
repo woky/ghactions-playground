@@ -4,7 +4,9 @@ jobs:
   build:
     name: Build
     runs-on: ubuntu-latest
-    container: rchain/buildenv
+    container:
+      image: alpine
+      options: --privileged
     steps:
       - run: |
           env | sort
