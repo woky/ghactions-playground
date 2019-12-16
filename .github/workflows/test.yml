@@ -4,12 +4,10 @@ jobs:
   build:
     name: Build
     runs-on: ubuntu-latest
-    container:
-      image: alpine
-      options: --privileged --network=host
     steps:
       - run: env | sort
-      - run: |
+      - container: alpine
+        run: |
           mkdir -p /home/runner/work/_temp
           mount --bind $RUNNER_TEMP /home/runner/work/_temp
           ls /home/runner/work/_temp
