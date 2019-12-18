@@ -9,7 +9,7 @@ jobs:
       - run: |
           echo ::set-env name=_CACHE_PATH::/mycache
           echo ::set-env name=_CACHE_TYPE::cache-root
-          echo ::set-env name=_CACHE_TAG::1
+          echo ::set-env name=_CACHE_TAG::2
 
       - uses: actions/cache@v1
         with:
