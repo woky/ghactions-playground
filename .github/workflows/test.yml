@@ -1,12 +1,25 @@
 name: Continuous Integration
 on: [push]
 jobs:
-  build:
-    name: Build
+  cache_in_github_workspace:
     runs-on: ubuntu-latest
-    container: rchain/buildenv:latest
+    container: alpine
     steps:
       - run: env | sort
-      - run: env | sort
-        env:
-          SBT_OPTS: "$SBT_OPTS sbt.ci"
+      - run: |
+          echo ::set-env name=_CACHE_PATH::$GITHUB_WORKSPACE/mycache
+          echo ::set-env name=_CACHE_TYPE::cache-GITHUB_WORKSPACE
+          echo ::set-env name=_CACHE_TAG::1
+
+      - uses: actions/cache@v1
+        with:
+          path: ${{ env._CACHE_PATH }}
+          key: ${{ env._CACHE_TYPE }}-${{ env._CACHE_TAG }}
+          restore-keys: |
+            ${{ env._CACHE_TYPE }}-
+
+      - run: find $_CACHE_PATH || true
+
+      - run: |
+          mkdir -p $_CACHE_PATH
+          echo foo >$_CACHE_PATH/myfile
