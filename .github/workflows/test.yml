@@ -7,9 +7,9 @@ jobs:
     steps:
       - run: env | sort
       - run: |
-          echo ::set-env name=_CACHE_PATH::$GITHUB_WORKSPACE/mycache
-          echo ::set-env name=_CACHE_TYPE::cache-GITHUB_WORKSPACE
-          echo ::set-env name=_CACHE_TAG::2
+          echo ::set-env name=_CACHE_PATH::$RUNNER_WORKSPACE/mycache
+          echo ::set-env name=_CACHE_TYPE::cache-RUNNER_WORKSPACE
+          echo ::set-env name=_CACHE_TAG::1
 
       - uses: actions/cache@v1
         with:
