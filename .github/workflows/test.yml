@@ -13,3 +13,4 @@ jobs:
       - run: env | sort
       - run: echo '${{ toJSON(matrix.modules) }}' | jq .
       - run: find /
+      - run: ./.github/yaml2json .github/workflows/test.yml | jq .
