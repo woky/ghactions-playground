@@ -6,11 +6,10 @@ jobs:
     container: alpine
     strategy:
       matrix:
-        foo:
-          - { a: [1, 2, 3] }
-          - { a: [1, 3] }
-          - { b: [2, 3], c: 1 }
+        modules:
+          - [ casper ]
+          - [] # rest
     steps:
       - run: env | sort
-      - run: echo '${{ toJSON(matrix.foo) }}'
+      - run: echo '${{ toJSON(matrix.modules) }}'
       - run: find /
