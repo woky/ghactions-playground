@@ -10,7 +10,7 @@ jobs:
           - [ casper ]
           - [] # rest
     steps:
+      - name: Clone Repository
+        uses: actions/checkout@v1
       - run: env | sort
-      - run: echo '${{ toJSON(matrix.modules) }}' | jq .
-      - run: find /
-      - run: ./.github/yaml2json .github/workflows/test.yml | jq .
+      - run: ./.github/yaml2json <.github/workflows/test.yml | jq .
