@@ -12,4 +12,4 @@ jobs:
           - { b: [2, 3], c: 1 }
     steps:
       - run: env | sort
-      - run: echo '${{ toJSON(matrix.foo }}'
+      - run: echo '${{ toJSON(matrix.foo) }}'
