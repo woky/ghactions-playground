@@ -3,7 +3,7 @@ on: [push]
 jobs:
   cache_in_github_workspace:
     runs-on: ubuntu-latest
-    container: alpine
+    container: woky/rchain-buildenv
     strategy:
       matrix:
         modules:
@@ -11,5 +11,5 @@ jobs:
           - [] # rest
     steps:
       - run: env | sort
-      - run: echo '${{ toJSON(matrix.modules) }}'
+      - run: echo '${{ toJSON(matrix.modules) }}' | jq .
       - run: find /
