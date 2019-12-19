@@ -13,3 +13,5 @@ jobs:
 
       - run: |
           echo $_CACHE_TAG
+
+      - run: cat /github/workflow/event.json
