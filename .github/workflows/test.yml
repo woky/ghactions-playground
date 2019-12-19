@@ -12,3 +12,4 @@ jobs:
           - { b: [2, 3], c: 1 }
     steps:
       - run: env | sort
+      - run: echo ${{ matrix.a }}
