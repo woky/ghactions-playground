@@ -1,4 +1,4 @@
 #!/usr/bin/perl
 use YAML::XS;
-use JSON;
+use JSON::PP;
 print encode_json(YAML::XS::LoadFile(\*STDIN))
