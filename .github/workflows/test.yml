@@ -4,14 +4,8 @@ jobs:
   cache_in_github_workspace:
     runs-on: ubuntu-latest
     container: alpine
+    strategy:
+      matrix:
+        foo: [1, 2, 3]
     steps:
       - run: env | sort
-      - run: |
-          echo ::set-env name=_CACHE_PATH::/mycache
-          echo ::set-env name=_CACHE_TYPE::cache-root
-          echo ::set-env name=_CACHE_TAG::a b c d
-
-      - run: |
-          echo $_CACHE_TAG
-
-      - run: cat /github/workflow/event.json
