@@ -9,6 +9,7 @@ jobs:
         modules:
           - [ {a: 1}, b, c ]
           - [ a, {c: [1,2,3]} ]
+          - hi "set foo in bar" 
     steps:
       - env:
           MATRIX: ${{ toJSON(matrix) }}
