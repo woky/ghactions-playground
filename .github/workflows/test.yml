@@ -3,14 +3,16 @@ on: [push]
 jobs:
   cache_in_github_workspace:
     runs-on: ubuntu-latest
-    container: woky/rchain-buildenv
+    container: alpine
     strategy:
       matrix:
         modules:
-          - [ casper ]
-          - [] # rest
+          - [ a, b, c ]
+          - [ a, c ]
     steps:
-      - name: Clone Repository
-        uses: actions/checkout@v1
-      - run: env | sort
-      - run: ./.github/yaml2json <.github/workflows/test.yml | jq .
+      - env:
+          MATRIX: ${{ toJSON(matrix) }}
+        run: |
+          set -x
+          env
+          echo $MATRIX
