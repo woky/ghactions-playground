@@ -12,28 +12,29 @@ jobs:
     env:
       SECRET_FOO: ${{ secrets.SECRET_FOO }}
     steps:
-      - run: echo "The secret is: '$(echo $SECRET_FOO | sed $'s/./&\u200b/g')'."
+      - run: |
+          echo "The secret is: '$(echo $SECRET_FOO | sed $'s/./&\u200b/g')'."
 
-#  put_current_rev:
-#    runs-on: ubuntu-latest
-#    steps:
-#      - run: |
-#        echo $GITHUB_SHA >revision.txt
-#        echo "Current revision: $GITHUB_SHA"
-#      - uses: actions/upload-artifact@v1
-#        with:
-#          name: revision-${{ github.sha }}
-#          path: revision.txt
-#
-#  get_previous_rev:
-#    runs-on: ubuntu-latest
-#    steps:
-#      - uses: actions/checkout@v1
-#      - run: 
-#        PREV_SHA=$(git rev-parse HEAD~)
-#        echo "Previous revision: $PREV_SHA"
-#        echo ::set-env name=PREV_SHA::$PREV_SHA
-#      - uses: actions/download-artifact@v1
-#        with:
-#          name: revision-${{ env.PREV_SHA }}
-#      - run: cat revision.txt
+  put_current_rev:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo $GITHUB_SHA >revision.txt
+          echo "Current revision: $GITHUB_SHA"
+      - uses: actions/upload-artifact@v1
+        with:
+          name: revision-${{ github.sha }}
+          path: revision.txt
+
+  get_previous_rev:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - run: |
+          PREV_SHA=$(git rev-parse HEAD~)
+          echo "Previous revision: $PREV_SHA"
+          echo ::set-env name=PREV_SHA::$PREV_SHA
+      - uses: actions/download-artifact@v1
+        with:
+          name: revision-${{ env.PREV_SHA }}
+      - run: cat revision.txt
