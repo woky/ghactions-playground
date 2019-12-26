@@ -7,4 +7,4 @@ jobs:
       FOO: ${{ secrets.FOO }}
     steps:
       - run: |
-          The secret is $FOO.
+          echo The secret is "$FOO".
