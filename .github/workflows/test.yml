@@ -5,6 +5,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: echo $GITHUB_SHA >artifact.txt
+
       - uses: actions/upload-artifact@v1
         with:
           name: artifact
