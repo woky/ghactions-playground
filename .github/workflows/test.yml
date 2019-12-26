@@ -10,6 +10,6 @@ jobs:
   access_secrets:
     runs-on: ubuntu-latest
     env:
-      FOO_KEY: ${{ secrets.FOO_KEY }}
+      SECRET_FOO: ${{ secrets.SECRET_FOO }}
     steps:
-      - run: echo "The secret is '$FOO_KEY'."
+      - run: echo "The secret is '$SECRET_FOO'."
