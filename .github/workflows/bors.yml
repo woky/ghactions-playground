@@ -1,8 +1,9 @@
 name: Bors Build
 on:
   push:
-    - trying
-    - staging
+    branches:
+      - trying
+      - staging
 
 jobs:
   job_A:
