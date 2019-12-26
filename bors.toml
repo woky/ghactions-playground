@@ -7,4 +7,4 @@ status = [
 # This works because Github doesn't allow self-review.
 required_approvals = 0
 
-delete_merged_branches = true
+delete_merged_branches = false

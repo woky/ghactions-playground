@@ -31,7 +31,7 @@ jobs:
       run: true
 
   __finish_success:
-    name: __finish_bors
+    name: __finish_status
     runs-on: ubuntu-latest
     needs: __finish_join
     if: success()
@@ -39,7 +39,7 @@ jobs:
       - run: true
 
   __finish_failure:
-    name: __finish_bors
+    name: __finish_status
     runs-on: ubuntu-latest
     needs: __finish_join
     if: "!success()"
