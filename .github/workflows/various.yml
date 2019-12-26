@@ -7,8 +7,11 @@ on:
 jobs:
   show_env:
     runs-on: ubuntu-latest
+    env:
+      EVENT: ${{ toJSON(github.event) }}
     steps:
       - run: env | sort
+      - run: cat $GITHUB_EVENT_PATH
 
   access_secrets:
     runs-on: ubuntu-latest
