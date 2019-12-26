@@ -4,42 +4,8 @@ jobs:
   build_base:
     runs-on: ubuntu-latest
     steps:
-      - run: true
-
-  test_a:
-    runs-on: ubuntu-latest
-    needs: build_base
-    steps:
-      - run: true
-
-  test_b:
-    runs-on: ubuntu-latest
-    needs: build_base
-    steps:
-      - run: true
-
-  __finish_join:
-    runs-on: ubuntu-latest
-    needs:
-      - test_a
-      - test_b
-    steps:
-      - run: true
-
-  __finish_success:
-    name: __finish_status
-    if: success()
-    runs-on: ubuntu-latest
-    needs: __finish_join
-    steps:
-      - name: Mark the job as successful
-        run: true
-
-  __finish_failure:
-    name: __finish_status
-    if: "!success()"
-    runs-on: ubuntu-latest
-    needs: __finish_join
-    steps:
-      - name: Mark the job as a failure
-        run: false
+      - run: echo foo >artifact.txt
+      - uses: actions/upload-artifact@v1
+        with:
+          name: artifact-${{ env.GITHUB_SHA }}
+          path: artifact.txt
