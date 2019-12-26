@@ -2,10 +2,14 @@ name: Continuous Integration
 on: [push, pull_request]
 
 jobs:
-  build_base:
+  show_env:
+    runs-on: ubuntu-latest
+    steps:
+      - run: env | sort
+
+  access_secrets:
     runs-on: ubuntu-latest
     env:
-      FOO: ${{ secrets.FOO }}
+      FOO_KEY: ${{ secrets.FOO_KEY }}
     steps:
-      - run: |
-          echo "The secret is '$FOO'."
+      - run: echo "The secret is '$FOO_KEY'."
