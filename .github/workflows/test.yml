@@ -1,19 +1,43 @@
 name: Continuous Integration
 on: [push]
 jobs:
-  cache_in_github_workspace:
+  build_base:
     runs-on: ubuntu-latest
-    container: alpine
-    strategy:
-      matrix:
-        modules:
-          - [ {a: 1}, b, c ]
-          - [ a, {c: [1,2,3]} ]
-          - hi "set foo in bar" 
     steps:
-      - env:
-          MATRIX: ${{ toJSON(matrix) }}
-        run: |
-          set -x
-          env
-          echo $MATRIX
+      - run: true
+
+  test_a:
+    runs-on: ubuntu-latest
+    steps:
+      - run: true
+
+  test_b:
+    runs-on: ubuntu-latest
+    steps:
+      - run: true
+
+  finish_join:
+    runs-on: ubuntu-latest
+    needs:
+      - test_a
+      - test_b
+    steps:
+      - run: true
+
+  finish_success:
+    name: bors build finished
+    if: success()
+    runs-on: ubuntu-latest
+    needs: finish_join
+    steps:
+      - name: Mark the job as successful
+        run: exit 0
+
+  finish_failure:
+    name: bors build finished
+    if: "!success()"
+    runs-on: ubuntu-latest
+    needs: finish_success
+    steps:
+      - name: Mark the job as a failure
+        run: exit 1
