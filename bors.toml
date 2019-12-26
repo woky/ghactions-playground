@@ -1,6 +1,6 @@
 # require the below checks before bors merges anything
 status = [
-  "bors build finish"
+  "__finish_status"
 ]
 
 # Ensure that reviewers (all maintainers!) can't merge their own PRs without review.
