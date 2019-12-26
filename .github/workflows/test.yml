@@ -23,7 +23,8 @@ jobs:
     needs:
       - test_a
       - test_b
-    steps: []
+    steps:
+      - run: true
 
   finish_success:
     name: bors build finished
