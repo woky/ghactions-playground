@@ -8,11 +8,13 @@ jobs:
 
   test_a:
     runs-on: ubuntu-latest
+    needs: build_base
     steps:
       - run: true
 
   test_b:
     runs-on: ubuntu-latest
+    needs: build_base
     steps:
       - run: true
 
