@@ -30,7 +30,7 @@ jobs:
     name: _meta_bors_finish_check
     if: success()
     runs-on: ubuntu-latest
-    needs: finish_join
+    needs: _meta_finish_join
     steps:
       - name: Mark the job as successful
         run: true
@@ -39,7 +39,7 @@ jobs:
     name: _meta_bors_finish_check
     if: "!success()"
     runs-on: ubuntu-latest
-    needs: finish_join
+    needs: _meta_finish_join
     steps:
       - name: Mark the job as a failure
         run: false
