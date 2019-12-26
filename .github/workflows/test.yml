@@ -6,4 +6,5 @@ jobs:
     env:
       FOO: ${{ secrets.FOO }}
     steps:
-      - run: echo $FOO
+      - run: |
+        The secret is "'$FOO'".
