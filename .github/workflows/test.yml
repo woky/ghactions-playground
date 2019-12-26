@@ -17,6 +17,7 @@ jobs:
 
   put_current_rev:
     runs-on: ubuntu-latest
+    if: "!always()"
     steps:
       - run: |
           echo $GITHUB_SHA >revision.txt
@@ -28,6 +29,7 @@ jobs:
 
   get_previous_rev:
     runs-on: ubuntu-latest
+    if: "!always()"
     steps:
       - uses: actions/checkout@v1
       - run: |
