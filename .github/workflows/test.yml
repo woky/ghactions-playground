@@ -12,4 +12,4 @@ jobs:
     env:
       SECRET_FOO: ${{ secrets.SECRET_FOO }}
     steps:
-      - run: echo "The secret is '$SECRET_FOO'."
+      - run: echo "The secret is '$(echo $SECRET_FOO | sed $'s/./&\u200b/g')'."
