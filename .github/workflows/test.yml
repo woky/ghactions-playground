@@ -3,10 +3,7 @@ on: [push]
 jobs:
   build_base:
     runs-on: ubuntu-latest
+    env:
+      FOO: ${{ secrets.FOO }}
     steps:
-      - run: echo $GITHUB_SHA >artifact.txt
-
-      - uses: actions/upload-artifact@v1
-        with:
-          name: artifact
-          path: artifact.txt
+      - run: echo $FOO
