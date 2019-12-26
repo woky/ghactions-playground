@@ -1,0 +1,10 @@
+# require the below checks before bors merges anything
+status = [
+  "bors build finish"
+]
+
+# Ensure that reviewers (all maintainers!) can't merge their own PRs without review.
+# This works because Github doesn't allow self-review.
+required_approvals = 0
+
+delete_merged_branches = true
