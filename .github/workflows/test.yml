@@ -4,10 +4,8 @@ jobs:
   build_base:
     runs-on: ubuntu-latest
     steps:
-      - run: env|sort
-      - run: echo ${{ env.GITHUB_SHA }}
-      - run: echo foo >artifact.txt
+      - run: echo $GITHUB_SHA >artifact.txt
       - uses: actions/upload-artifact@v1
         with:
-          name: artifact-${{ env.GITHUB_SHA }}
+          name: artifact
           path: artifact.txt
