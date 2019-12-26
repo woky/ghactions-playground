@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: build_base
     steps:
-      - run: false
+      - run: true
 
   test_b:
     runs-on: ubuntu-latest
