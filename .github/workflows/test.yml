@@ -4,6 +4,8 @@ jobs:
   build_base:
     runs-on: ubuntu-latest
     steps:
+      - name: Clone Repository
+        uses: actions/checkout@v1
       - run: echo ${{ env.GITHUB_SHA }}
       - run: echo foo >artifact.txt
       - uses: actions/upload-artifact@v1
