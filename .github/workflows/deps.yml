@@ -1,0 +1,25 @@
+name: Dependencies
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+
+  job_A:
+    runs-on: ubuntu-latest
+    steps:
+      - run: true
+
+  job_B1:
+    name: job_B
+    runs-on: ubuntu-latest
+    needs: job_A
+    steps:
+      - run: true
+
+  job_C:
+    runs-on: ubuntu-latest
+    needs: job_B
+    steps:
+      - run: true
