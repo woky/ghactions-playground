@@ -7,8 +7,6 @@ on:
 jobs:
   show_env:
     runs-on: ubuntu-latest
-    env:
-      EVENT: ${{ toJSON(github.event) }}
     steps:
       - run: env | sort
       - run: cat $GITHUB_EVENT_PATH
@@ -18,11 +16,11 @@ jobs:
         run: echo "$ctx"
       - name: ctx-job
         env:
-          ctx: ${{ tojson(job) }}
+          ctx: ${{ toJSON(job) }}
         run: echo "$ctx"
       - name: ctx-steps
         env:
-          ctx: ${{ tojson(steps) }}
+          ctx: ${{ toJSON(steps) }}
         run: echo "$ctx"
 
   run_steps_on_failure:
