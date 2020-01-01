@@ -12,15 +12,15 @@ jobs:
     steps:
       - run: env | sort
       - run: cat $GITHUB_EVENT_PATH
-      - name: Show context: github
+      - name: ctx-github
         env:
           ctx: ${{ toJSON(github) }}
         run: echo "$ctx"
-      - name: show context: job
+      - name: ctx-job
         env:
           ctx: ${{ tojson(job) }}
         run: echo "$ctx"
-      - name: show context: steps
+      - name: ctx-steps
         env:
           ctx: ${{ tojson(steps) }}
         run: echo "$ctx"
