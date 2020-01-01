@@ -12,6 +12,27 @@ jobs:
     steps:
       - run: env | sort
       - run: cat $GITHUB_EVENT_PATH
+      - name: Show context: github
+        env:
+          ctx: ${{ toJSON(github) }}
+        run: echo "$ctx"
+      - name: show context: job
+        env:
+          ctx: ${{ tojson(job) }}
+        run: echo "$ctx"
+      - name: show context: steps
+        env:
+          ctx: ${{ tojson(steps) }}
+        run: echo "$ctx"
+
+  run_steps_on_failure:
+    runs-on: ubuntu-latest
+    steps:
+      - run: false
+      - run: echo "It failed!"
+        if: "!success()"
+      - run: echo "It's OK."
+        if: "success()"
 
   access_secrets:
     runs-on: ubuntu-latest
