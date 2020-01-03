@@ -1,48 +1,13 @@
 name: Bors Build
-on:
-  push:
-    branches:
-      - trying
-      - staging
+on: [push]
 
 jobs:
   job_A:
     runs-on: ubuntu-latest
     steps:
-      - run: true
+      - run: sleep 9999
 
-  job_B1:
+  job_B:
     runs-on: ubuntu-latest
-    needs: job_A
     steps:
       - run: true
-
-  job_B2:
-    runs-on: ubuntu-latest
-    needs: job_A
-    steps:
-      - run: true
-
-  __finish_join:
-    runs-on: ubuntu-latest
-    needs:
-      - job_B1
-      - job_B2
-    steps:
-      - run: true
-
-  __finish_success:
-    name: __finish_status
-    runs-on: ubuntu-latest
-    needs: __finish_join
-    if: success()
-    steps:
-      - run: true
-
-  __finish_failure:
-    name: __finish_status
-    runs-on: ubuntu-latest
-    needs: __finish_join
-    if: "!success()"
-    steps:
-      - run: false
