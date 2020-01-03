@@ -10,6 +10,8 @@ jobs:
     steps:
       - run: env | sort
       - run: cat $GITHUB_EVENT_PATH
+      - run: ls -ln /var/run/
+      - run: cat /etc/group
       - name: ctx-github
         env:
           ctx: ${{ toJSON(github) }}
